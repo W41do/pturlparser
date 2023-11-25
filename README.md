@@ -15,9 +15,9 @@ Alternative install:
 ```
 git clone https://github.com/W41do/pturlparser.git
 ```
-Then navigate to the root folder:
+Then navigate to this folder:
 ```
-cd /pturlparser/
+cd /pturlparser/pturlparser/
 ```
 To use the tool you will need to use:
 ```
