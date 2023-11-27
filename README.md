@@ -46,12 +46,15 @@ source ~/.zshrc
 ## Usage examples
 ```
 pturlparser -u https://www.example.com
+pturlparser -u https://www.example.com -o json
+pturlparser -u https://www.example.com -o text
 ... TODO
 ```
 
 ## Options
 ```
-TODO
+Output options: -o/--output [console/json/text]
+...TODO
 ```
 
 ## Dependencies
