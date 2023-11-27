@@ -1,1 +1,6 @@
 .
+setuptools~=68.2.2
+esprima~=4.0.1
+beautifulsoup4~=4.12.2
+requests~=2.31.0
+ptlibs~=1.0.4
