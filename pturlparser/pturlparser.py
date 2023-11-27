@@ -17,56 +17,76 @@ from _version import __version__
 from ptlibs import ptprinthelper
 
 class pturlparser:
+
+    # Parser object constructor
     def __init__(self, args):
         logging.disable(logging.CRITICAL)
         self.use_json = args.output == "json"
         self.url = args.url
         self.output_format = args.output
 
+    # Parsing execution
     def run(self):
         urls = self.parse_target(self.url)
         self.display_urls(urls)
 
+    # Method to fetch HTML and JS content from target URL and extract URLs from it
     def parse_target(self, target):
         try:
             response = requests.get(target)
             html_content = response.text
+
+        # In case invalid url is inputted
         except requests.RequestException as e:
             print(f"Error loading page {target}: {e}")
             return set()
 
+        # URL extractor initialization
         html_extractor = HTMLExtractor(base_url=target)
         html_urls = html_extractor.extract(html_content)
 
+        # JS extractor initialization
         js_extractor = JavaScriptExtractor()
+        # HTML parser initialization
         soup = BeautifulSoup(html_content, 'html.parser')
 
+        # Looks in the children of page elements to find <script> tags
         for script in soup.find_all('script'):
             script_url = script.get('src')
+            # If found a URL in src attribute of a <script> tag
             if script_url:
+                # Join base URL and relative URL
                 full_script_url = urljoin(target, script_url)
                 try:
+                    # Get full url list
                     script_response = requests.get(full_script_url)
                     html_urls.update(js_extractor.extract(script_response.text))
                 except requests.RequestException as e:
                     print(f"Error loading script {full_script_url}: {e}")
             elif script.string:
+                # update URL list
                 html_urls.update(js_extractor.extract(script.string))
 
         return html_urls
 
+    # shows gathered URLs in JSON or TXT format
     def display_urls(self, urls):
+        # Display in console
         if self.output_format == "console":
             for url in urls:
                 print(url)
+        # Export to JSON
         elif self.output_format == "json":
             with open("output.json", "w") as json_file:
                 json.dump(list(urls), json_file, indent=4)
+        # Export to TXT
         elif self.output_format == "text":
             with open("output.txt", "w") as file:
                 for url in urls:
                     file.write(url + "\n")
 
+    # I'm trying
+    # Shows help text
 def get_help():
     return [
         {"description": ["pturlparser"]},
@@ -84,6 +104,7 @@ def get_help():
         ]
         }]
 
+# Command line arguments parsing
 def parse_args():
     parser = ArgumentParser(
         add_help=False, usage=f"{SCRIPTNAME} <options>")
@@ -103,13 +124,14 @@ def parse_args():
     # ptprinthelper.print_banner(SCRIPTNAME, __version__)
     return args
 
-
+# Main function, parsing command line arguments, parser instance creation.
 def main():
     global SCRIPTNAME
     SCRIPTNAME = "pturlparser"
     args = parse_args()
     script = pturlparser(args)
     script.run()
+
 
 if __name__ == "__main__":
     main()
