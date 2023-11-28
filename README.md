@@ -45,9 +45,9 @@ source ~/.zshrc
 
 ## Usage examples
 ```
-pturlparser -u https://www.example.com
-pturlparser -u https://www.example.com -o json
-pturlparser -u https://www.example.com -o text
+python3 pturlparser.py -u https://www.example.com
+python3 pturlparser.py -u https://www.example.com -o json
+python3 pturlparser.py -u https://www.example.com -o text
 ... TODO
 ```
 
