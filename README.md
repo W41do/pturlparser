@@ -11,7 +11,7 @@ pturlparser is a tool that analyzes web pages and extracts all URLs from them, i
 ```
 pip install pturlparser # THIS IS NOT WORKING - use the option below
 ```
-Alternative install:
+### Alternative install
 ```
 git clone https://github.com/W41do/pturlparser.git
 ```
@@ -48,18 +48,23 @@ source ~/.zshrc
 python3 pturlparser.py -u https://www.example.com
 python3 pturlparser.py -u https://www.example.com -o json
 python3 pturlparser.py -u https://www.example.com -o text
-... TODO
 ```
 
 ## Options
 ```
-Output options: -o/--output [console/json/text]
-...TODO
+   -u  --url      <url>     Specify the target URL to analyze
+   -o  --output   <format>  Set the output format (console, json, text)
+   -h  --help               Show this help message
+   -v  --version            Display the version of the tool
 ```
 
 ## Dependencies
 ```
-TODO
+setuptools
+esprima
+beautifulsoup4
+requests
+ptlibs
 ```
 
 ## Version History

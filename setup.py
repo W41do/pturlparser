@@ -29,14 +29,11 @@ setuptools.setup(
     ],
     python_requires='>=3.10.0',
     install_requires=[
-        "ptlibs>=0.0.6",
-        "requests>=2.27.1",
-        "validators>=0.18.2",
-        "impacket>=0.9.24"
-        "DOPLNIT... bude tu to stejne co v requirements"
-        "TO CO TU JE SE POTOM SMAZE A PRED ODEVZDANIM"
-        "PROJEKTU SE TU DAJI KNIHOVNY CO JSOU OPRAVDU"
-        "POTREBA. ZATIM TO ALE NECHME TAK JAK TO JE"
+        "setuptools>=68.2.2",
+        "esprima>=4.0.1",
+        "beautifulsoup4>=4.12.2",
+        "requests>=2.31.0",
+        "ptlibs>=1.0.4",
     ],
     entry_points = {
         'console_scripts': [
