@@ -15,6 +15,11 @@ pip install pturlparser # THIS IS NOT WORKING - use the option below
 ```
 git clone https://github.com/W41do/pturlparser.git
 ```
+
+#### Install requirements
+```
+python3 pip install -r requirements.txt
+```
 Then navigate to this folder:
 ```
 cd /pturlparser/pturlparser/
